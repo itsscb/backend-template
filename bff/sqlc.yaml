@@ -1,0 +1,37 @@
+version: "2"
+sql: 
+  - schema: "db/migration"
+    queries: "db/query"
+    engine: "postgresql"
+    gen:
+      go:
+        package: "db"
+        out: "db/sqlc"
+        sql_package: "lib/pq"
+        emit_json_tags: true
+        emit_interface: true
+        emit_empty_slices: true
+        emit_exact_table_names: false
+        overrides:
+          - db_type: "bigserial"
+            go_type: "uint64"
+          - column: "payments.account_id"
+            go_type: "uint64"
+          - column: "persons.account_id"
+            go_type: "uint64"
+          - column: "documents.account_id"
+            go_type: "uint64"
+          - column: "returnsLog.return_id"
+            go_type: "uint64"
+          - column: "returnsLog.mail_id"
+            go_type: "uint64"
+          - column: "returns.provider_id"
+            go_type: "uint64"
+          - column: "returns.person_id"
+            go_type: "uint64"
+          - column: "sessions.account_id"
+            go_type: "uint64"
+          - db_type: "timestamptz"
+            go_type: "time.Time"
+          - db_type: "uuid"
+            go_type: "github.com/google/uuid.UUID"

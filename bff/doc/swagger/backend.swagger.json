@@ -1,0 +1,1994 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "backend API",
+    "version": "1.0",
+    "contact": {
+      "name": "itsscb",
+      "url": "https://github.com/itsscb/backend-template",
+      "email": "dev@itsscb.de"
+    }
+  },
+  "tags": [
+    {
+      "name": "backend",
+      "description": "backend"
+    }
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/documents/upload": {
+      "post": {
+        "summary": "Upload Document [only HTTP]",
+        "description": "Testing via swagger is not possible. Try ```curl -X POST -H \"Authorization: Bearer {token}\" -F \"file=@/path/to/file\" -F \"person_id=1\" \"http://{serverURI}/documents/upload\"```",
+        "operationId": "backend_UploadDocument",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbUploadDocumentResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Upload a Document [only HTTP]",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbUploadDocumentRequest"
+            }
+          }
+        ],
+        "tags": [
+          "backend"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/accounts/create_account": {
+      "post": {
+        "summary": "Create Account",
+        "operationId": "backend_CreateAccount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbCreateAccountResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Create an Account",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbCreateAccountRequest"
+            }
+          }
+        ],
+        "tags": [
+          "backend"
+        ]
+      }
+    },
+    "/v1/accounts/get_account/{id}": {
+      "get": {
+        "summary": "Get Account by account_id",
+        "operationId": "backend_GetAccount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbGetAccountResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "uint64"
+          }
+        ],
+        "tags": [
+          "backend"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/accounts/list_accounts": {
+      "get": {
+        "summary": "List Accounts [admin only]",
+        "operationId": "backend_ListAccounts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbListAccountsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "pageId",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "backend"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/accounts/update_account": {
+      "patch": {
+        "summary": "Update Account",
+        "operationId": "backend_UpdateAccount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbUpdateAccountResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Update an Account",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbUpdateAccountRequest"
+            }
+          }
+        ],
+        "tags": [
+          "backend"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/accounts/update_account_privacy": {
+      "patch": {
+        "summary": "Update Account Privacy Settings",
+        "operationId": "backend_UpdateAccountPrivacy",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbUpdateAccountPrivacyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Update the Privacy Consent of an Account",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbUpdateAccountPrivacyRequest"
+            }
+          }
+        ],
+        "tags": [
+          "backend"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/documents/delete_document/{id}": {
+      "delete": {
+        "summary": "Delete Document by ID",
+        "operationId": "backend_DeleteDocument",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbDeleteDocumentResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "uint64"
+          }
+        ],
+        "tags": [
+          "backend"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/login": {
+      "post": {
+        "operationId": "backend_Login",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbLoginResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Login an Account",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbLoginRequest"
+            }
+          }
+        ],
+        "tags": [
+          "backend"
+        ]
+      }
+    },
+    "/v1/payments/create_payment": {
+      "post": {
+        "summary": "Create Payment",
+        "operationId": "backend_CreatePayment",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbCreatePaymentResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Create an Payment",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbCreatePaymentRequest"
+            }
+          }
+        ],
+        "tags": [
+          "backend"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/payments/delete_payment/{id}": {
+      "delete": {
+        "summary": "Delete Payment by ID",
+        "operationId": "backend_DeletePayment",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbDeletePaymentResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "uint64"
+          }
+        ],
+        "tags": [
+          "backend"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/payments/get_payment/{id}": {
+      "get": {
+        "summary": "Get Payment by ID",
+        "operationId": "backend_GetPayment",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbGetPaymentResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "uint64"
+          }
+        ],
+        "tags": [
+          "backend"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/payments/list_payments/{accountId}": {
+      "get": {
+        "summary": "List Payments by account_id",
+        "operationId": "backend_ListPayments",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbListPaymentsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "uint64"
+          }
+        ],
+        "tags": [
+          "backend"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/payments/update_payment": {
+      "patch": {
+        "summary": "Update Payment",
+        "operationId": "backend_UpdatePayment",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbUpdatePaymentResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Update an Payment",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbUpdatePaymentRequest"
+            }
+          }
+        ],
+        "tags": [
+          "backend"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/persons/create_person": {
+      "post": {
+        "summary": "Create Person",
+        "operationId": "backend_CreatePerson",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbCreatePersonResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Create an Person",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbCreatePersonRequest"
+            }
+          }
+        ],
+        "tags": [
+          "backend"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/persons/delete_person/{id}": {
+      "delete": {
+        "summary": "Delete Person by ID",
+        "operationId": "backend_DeletePerson",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbDeletePersonResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "uint64"
+          }
+        ],
+        "tags": [
+          "backend"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/persons/get_person/{id}": {
+      "get": {
+        "summary": "Get Person by ID",
+        "operationId": "backend_GetPerson",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbGetPersonResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "uint64"
+          }
+        ],
+        "tags": [
+          "backend"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/persons/list_persons/{accountId}": {
+      "get": {
+        "summary": "List Persons by account_id",
+        "operationId": "backend_ListPersons",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbListPersonsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "uint64"
+          }
+        ],
+        "tags": [
+          "backend"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/persons/update_person": {
+      "patch": {
+        "summary": "Update Person",
+        "operationId": "backend_UpdatePerson",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbUpdatePersonResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Update an Person",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbUpdatePersonRequest"
+            }
+          }
+        ],
+        "tags": [
+          "backend"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/returns_log/list_returns_log/{personId}": {
+      "get": {
+        "summary": "List ReturnsLog by person_id",
+        "operationId": "backend_ListReturnsLog",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbListReturnsLogResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "personId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "uint64"
+          }
+        ],
+        "tags": [
+          "backend"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/sessions/block_session": {
+      "patch": {
+        "summary": "Block Session by ID",
+        "operationId": "backend_BlockSession",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbBlockSessionResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Block a Session",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbBlockSessionRequest"
+            }
+          }
+        ],
+        "tags": [
+          "backend"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/sessions/list_sessions/{accountId}": {
+      "get": {
+        "summary": "List Sessions by account_id",
+        "operationId": "backend_ListSessions",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbListSessionsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "uint64"
+          }
+        ],
+        "tags": [
+          "backend"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/sessions/refresh_token": {
+      "post": {
+        "operationId": "backend_RefreshToken",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbRefreshTokenResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Get a new Access Token by submitting the Refresh Token",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbRefreshTokenRequest"
+            }
+          }
+        ],
+        "tags": [
+          "backend"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "pbAccount": {
+      "type": "object",
+      "example": {
+        "id": "1",
+        "email": "john.doe@example.com",
+        "firstname": "John",
+        "lastname": "Doe",
+        "phone": "",
+        "street": "Death Star 2",
+        "zip": "0815",
+        "city": "New York",
+        "country": "USA",
+        "birthday": "1990-10-05T00:00:00Z",
+        "privacy_accepted": false,
+        "privacy_accepted_date": "0001-01-01T00:00:00Z",
+        "creator": "john.doe@example.com",
+        "created": "2023-10-05T02:30:53Z",
+        "changer": "john.doe@example.com",
+        "changed": "2023-10-05T02:30:53Z"
+      },
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "email": {
+          "type": "string"
+        },
+        "firstname": {
+          "type": "string"
+        },
+        "lastname": {
+          "type": "string"
+        },
+        "street": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "zip": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "birthday": {
+          "type": "string",
+          "format": "date-time",
+          "example": "1990-10-05T00:00:00Z"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "privacyAccepted": {
+          "type": "boolean"
+        },
+        "privacyAcceptedDate": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2023-10-05T00:00:00Z"
+        },
+        "permissionLevel": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Default is 0 (non-priviledged)"
+        },
+        "creator": {
+          "type": "string"
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2023-10-05T00:00:00Z"
+        },
+        "changer": {
+          "type": "string"
+        },
+        "changed": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2023-10-05T00:00:00Z"
+        }
+      },
+      "title": "Account"
+    },
+    "pbBlockSessionRequest": {
+      "type": "object",
+      "example": {
+        "session_id": "5e1d67da-7c9b-4365-a4d5-3cc0a051241e"
+      },
+      "properties": {
+        "sessionId": {
+          "type": "string",
+          "format": "uuid",
+          "example": "5e1d67da-7c9b-4365-a4d5-3cc0a051241e"
+        }
+      },
+      "description": "Block a Session",
+      "title": "Block Session",
+      "required": [
+        "sessionId"
+      ]
+    },
+    "pbBlockSessionResponse": {
+      "type": "object",
+      "example": {
+        "session_id": "5e1d67da-7c9b-4365-a4d5-3cc0a051241e",
+        "blocked": true
+      },
+      "properties": {
+        "sessionId": {
+          "type": "string",
+          "format": "uuid",
+          "example": "5e1d67da-7c9b-4365-a4d5-3cc0a051241e"
+        },
+        "blocked": {
+          "type": "boolean",
+          "example": true
+        }
+      },
+      "title": "Blocked Session"
+    },
+    "pbCreateAccountRequest": {
+      "type": "object",
+      "example": {
+        "email": "john.doe@example.com",
+        "password": "MayTheForceBeWithYou!",
+        "firstname": "John",
+        "lastname": "Doe",
+        "street": "Main Street 1",
+        "zip": "0815",
+        "city": "New York",
+        "country": "USA",
+        "birthday": "1990-10-05T00:00:00Z"
+      },
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "firstname": {
+          "type": "string"
+        },
+        "lastname": {
+          "type": "string"
+        },
+        "street": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "zip": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "birthday": {
+          "type": "string",
+          "format": "date-time",
+          "example": "1990-10-05T00:00:00Z"
+        },
+        "privacyAccepted": {
+          "type": "boolean",
+          "example": true
+        }
+      },
+      "description": "Create an Account",
+      "title": "Create Account",
+      "required": [
+        "email",
+        "password",
+        "firstname",
+        "lastname",
+        "street",
+        "city",
+        "zip",
+        "country",
+        "birthday"
+      ]
+    },
+    "pbCreateAccountResponse": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "$ref": "#/definitions/pbAccount"
+        }
+      },
+      "description": "Returns the created Account",
+      "title": "Created Account"
+    },
+    "pbCreatePaymentRequest": {
+      "type": "object",
+      "example": {
+        "account_id": "1",
+        "payment_category": "TBD: paypal",
+        "paypal_account": "john.doe@example.com",
+        "paypal_id": "this-is-a-paypal-id",
+        "payment_system": "TBD: paypal system",
+        "type": "TBD: some type"
+      },
+      "properties": {
+        "accountId": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "paymentCategory": {
+          "type": "string"
+        },
+        "bankname": {
+          "type": "string"
+        },
+        "IBAN": {
+          "type": "string"
+        },
+        "BIC": {
+          "type": "string"
+        },
+        "paypalAccount": {
+          "type": "string"
+        },
+        "paypalId": {
+          "type": "string"
+        },
+        "paymentSystem": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "description": "Create an Payment",
+      "title": "Create Payment",
+      "required": [
+        "accountId",
+        "paymentCategory",
+        "type"
+      ]
+    },
+    "pbCreatePaymentResponse": {
+      "type": "object",
+      "properties": {
+        "payment": {
+          "$ref": "#/definitions/pbPayment"
+        }
+      },
+      "description": "Returns the created Payment",
+      "title": "Created Payment"
+    },
+    "pbCreatePersonRequest": {
+      "type": "object",
+      "example": {
+        "account_id": "1",
+        "firstname": "John",
+        "lastname": "Doe",
+        "street": "Main Street 1",
+        "zip": "0815",
+        "city": "New York",
+        "country": "USA",
+        "birthday": "1990-10-05T00:00:00Z"
+      },
+      "properties": {
+        "accountId": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "firstname": {
+          "type": "string"
+        },
+        "lastname": {
+          "type": "string"
+        },
+        "street": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "zip": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "birthday": {
+          "type": "string",
+          "format": "date-time",
+          "example": "1990-10-05T00:00:00Z"
+        }
+      },
+      "description": "Create an Person",
+      "title": "Create Person",
+      "required": [
+        "accountId",
+        "firstname",
+        "lastname",
+        "street",
+        "city",
+        "zip",
+        "country",
+        "birthday"
+      ]
+    },
+    "pbCreatePersonResponse": {
+      "type": "object",
+      "properties": {
+        "person": {
+          "$ref": "#/definitions/pbPerson"
+        }
+      },
+      "description": "Returns the created Person",
+      "title": "Created Person"
+    },
+    "pbDeleteDocumentResponse": {
+      "type": "object",
+      "example": {
+        "id": "1",
+        "deleted": true
+      },
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "deleted": {
+          "type": "boolean"
+        }
+      },
+      "title": "Delete Document Response"
+    },
+    "pbDeletePaymentResponse": {
+      "type": "object",
+      "example": {
+        "id": "1",
+        "deleted": true
+      },
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "deleted": {
+          "type": "boolean"
+        }
+      },
+      "title": "Delete Payment Response"
+    },
+    "pbDeletePersonResponse": {
+      "type": "object",
+      "example": {
+        "id": "1",
+        "deleted": true
+      },
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "deleted": {
+          "type": "boolean"
+        }
+      },
+      "title": "Delete Person Response"
+    },
+    "pbDocument": {
+      "type": "object",
+      "properties": {
+        "personId": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "mailId": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "valid": {
+          "type": "boolean"
+        },
+        "validatedBy": {
+          "type": "string"
+        },
+        "validDate": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2023-10-05T00:00:00Z"
+        },
+        "creator": {
+          "type": "string"
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2023-10-05T00:00:00Z"
+        },
+        "changer": {
+          "type": "string"
+        },
+        "changed": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2023-10-05T00:00:00Z"
+        },
+        "id": {
+          "type": "string",
+          "format": "uint64"
+        }
+      },
+      "title": "Document"
+    },
+    "pbGetAccountResponse": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "$ref": "#/definitions/pbAccount"
+        }
+      },
+      "description": "Returns the Account",
+      "title": "GetAccount Response"
+    },
+    "pbGetPaymentResponse": {
+      "type": "object",
+      "properties": {
+        "payment": {
+          "$ref": "#/definitions/pbPayment"
+        }
+      },
+      "description": "Returns the Payment",
+      "title": "GetPayment Response"
+    },
+    "pbGetPersonResponse": {
+      "type": "object",
+      "properties": {
+        "person": {
+          "$ref": "#/definitions/pbPerson"
+        }
+      },
+      "description": "Returns the Person",
+      "title": "GetPerson Response"
+    },
+    "pbListAccountsResponse": {
+      "type": "object",
+      "properties": {
+        "accounts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/pbAccount"
+          }
+        }
+      },
+      "description": "Returns the Account",
+      "title": "ListAccounts Response"
+    },
+    "pbListPaymentsResponse": {
+      "type": "object",
+      "properties": {
+        "payments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/pbPayment"
+          }
+        }
+      },
+      "description": "Returns the Payment",
+      "title": "ListPayments Response"
+    },
+    "pbListPersonsResponse": {
+      "type": "object",
+      "properties": {
+        "persons": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/pbPerson"
+          }
+        }
+      },
+      "description": "Returns the Person",
+      "title": "ListPersons Response"
+    },
+    "pbListReturnsLogResponse": {
+      "type": "object",
+      "properties": {
+        "returnsLog": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/pbReturnsLog"
+          }
+        }
+      },
+      "description": "Returns the ReturnsLog",
+      "title": "ListReturnsLog Response"
+    },
+    "pbListSessionsResponse": {
+      "type": "object",
+      "properties": {
+        "sessions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/pbSession"
+          }
+        }
+      },
+      "description": "Returns the Sessions",
+      "title": "ListSessions Response"
+    },
+    "pbLoginRequest": {
+      "type": "object",
+      "example": {
+        "email": "john.doe@example.com",
+        "password": "MayTheForceBeWithYou!"
+      },
+      "properties": {
+        "email": {
+          "type": "string",
+          "example": "john.doe@example.com"
+        },
+        "password": {
+          "type": "string",
+          "format": "password",
+          "example": "MayTheForceBeWithYou!"
+        }
+      },
+      "description": "Login an Account",
+      "title": "Login",
+      "required": [
+        "email",
+        "password"
+      ]
+    },
+    "pbLoginResponse": {
+      "type": "object",
+      "properties": {
+        "sessionId": {
+          "type": "string",
+          "format": "uuid",
+          "example": "5e1d67da-7c9b-4365-a4d5-3cc0a051241e"
+        },
+        "accessToken": {
+          "type": "string",
+          "example": "v4.public.eyJlbWFpbCI6ImEyQGIuZGUiLCJleHAiOiIyMDIzLTEwLTA1VDAxOjE3OjA5KzAyOjAwIiwiaWF0IjoiMjAyMy0xMC0wNVQwMTowMjowOSswMjowMCIsImlkIjoiZjlhMjE2OWQtMWYxYS00YThiLTgzZWEtNzkxMzY5YjY3ZmYxIiwibmJmIjoiMjAyMy0xMC0wNVQwMTowMjowOSswMjowMCJ9Ah0bVbx9S1LR-pf8hLWVRQPUfK9zrHZvA7ApJ5aZXwhA7H1j-kHhccBjOAGYXZQT-ts7Jq3SJlzo5vtUjGBtDg"
+        },
+        "accessTokenExpiresAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "refreshToken": {
+          "type": "string",
+          "example": "v4.public.eyJlbWFpbCI6ImEyQGIuZGUiLCJleHAiOiIyMDIzLTEwLTA2VDAxOjAyOjA5KzAyOjAwIiwiaWF0IjoiMjAyMy0xMC0wNVQwMTowMjowOSswMjowMCIsImlkIjoiNWUxZDY3ZGEtN2M5Yi00MzY1LWE0ZDUtM2NjMGEwNTEyNDFlIiwibmJmIjoiMjAyMy0xMC0wNVQwMTowMjowOSswMjowMCJ9BoX36w0po1vvHSjsBP_KWeFxV1xRbQayqbJuIoK2jKqy1Bt2RoHyJbLoCEO15CRT5DnQ6P0AHlBzjsXt61aDDw"
+        },
+        "refreshTokenExpiresAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "accountId": {
+          "type": "string",
+          "format": "uint64",
+          "example": "1"
+        }
+      },
+      "title": "Login Response"
+    },
+    "pbPayment": {
+      "type": "object",
+      "example": {
+        "id": "1",
+        "account_id": "1",
+        "payment_category": "TBD: paypal",
+        "paypal_account": "john.doe@example.com",
+        "paypal_id": "this-is-a-paypal-id",
+        "payment_system": "TBD: paypal system",
+        "type": "TBD: some type",
+        "creator": "john.doe@example.com",
+        "created": "2023-10-05T02:30:53Z",
+        "changer": "john.doe@example.com",
+        "changed": "2023-10-05T02:30:53Z"
+      },
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "accountId": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "paymentCategory": {
+          "type": "string"
+        },
+        "bankname": {
+          "type": "string"
+        },
+        "IBAN": {
+          "type": "string"
+        },
+        "BIC": {
+          "type": "string"
+        },
+        "paypalAccount": {
+          "type": "string"
+        },
+        "paypalId": {
+          "type": "string"
+        },
+        "paymentSystem": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "creator": {
+          "type": "string"
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2023-10-05T00:00:00Z"
+        },
+        "changer": {
+          "type": "string"
+        },
+        "changed": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2023-10-05T00:00:00Z"
+        }
+      },
+      "title": "Payment"
+    },
+    "pbPerson": {
+      "type": "object",
+      "example": {
+        "id": "1",
+        "email": "john.doe@example.com",
+        "firstname": "John",
+        "lastname": "Doe",
+        "phone": "",
+        "street": "Death Star 2",
+        "zip": "0815",
+        "city": "New York",
+        "country": "USA",
+        "birthday": "1990-10-05T00:00:00Z",
+        "privacy_accepted": false,
+        "privacy_accepted_date": "0001-01-01T00:00:00Z",
+        "creator": "john.doe@example.com",
+        "created": "2023-10-05T02:30:53Z",
+        "changer": "john.doe@example.com",
+        "changed": "2023-10-05T02:30:53Z"
+      },
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "accountId": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "firstname": {
+          "type": "string"
+        },
+        "lastname": {
+          "type": "string"
+        },
+        "street": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "zip": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "birthday": {
+          "type": "string",
+          "format": "date-time",
+          "example": "1990-10-05T00:00:00Z"
+        },
+        "creator": {
+          "type": "string"
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2023-10-05T00:00:00Z"
+        },
+        "changer": {
+          "type": "string"
+        },
+        "changed": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2023-10-05T00:00:00Z"
+        }
+      },
+      "title": "Person"
+    },
+    "pbRefreshTokenRequest": {
+      "type": "object",
+      "example": {
+        "refresh_token": "v4.public.eyJlbWFpbCI6ImEyQGIuZGUiLCJleHAiOiIyMDIzLTEwLTA2VDAxOjAyOjA5KzAyOjAwIiwiaWF0IjoiMjAyMy0xMC0wNVQwMTowMjowOSswMjowMCIsImlkIjoiNWUxZDY3ZGEtN2M5Yi00MzY1LWE0ZDUtM2NjMGEwNTEyNDFlIiwibmJmIjoiMjAyMy0xMC0wNVQwMTowMjowOSswMjowMCJ9BoX36w0po1vvHSjsBP_KWeFxV1xRbQayqbJuIoK2jKqy1Bt2RoHyJbLoCEO15CRT5DnQ6P0AHlBzjsXt61aDDw"
+      },
+      "properties": {
+        "refreshToken": {
+          "type": "string",
+          "example": "v4.public.eyJlbWFpbCI6ImEyQGIuZGUiLCJleHAiOiIyMDIzLTEwLTA2VDAxOjAyOjA5KzAyOjAwIiwiaWF0IjoiMjAyMy0xMC0wNVQwMTowMjowOSswMjowMCIsImlkIjoiNWUxZDY3ZGEtN2M5Yi00MzY1LWE0ZDUtM2NjMGEwNTEyNDFlIiwibmJmIjoiMjAyMy0xMC0wNVQwMTowMjowOSswMjowMCJ9BoX36w0po1vvHSjsBP_KWeFxV1xRbQayqbJuIoK2jKqy1Bt2RoHyJbLoCEO15CRT5DnQ6P0AHlBzjsXt61aDDw",
+          "title": "Refresh Token"
+        }
+      },
+      "description": "Get a new Access Token by submitting the Refresh Token",
+      "title": "Refresh Token Request",
+      "required": [
+        "refreshToken"
+      ]
+    },
+    "pbRefreshTokenResponse": {
+      "type": "object",
+      "example": {
+        "access_token": "v4.public.eyJlbWFpbCI6ImEyQGIuZGUiLCJleHAiOiIyMDIzLTEwLTA1VDAxOjE3OjA5KzAyOjAwIiwiaWF0IjoiMjAyMy0xMC0wNVQwMTowMjowOSswMjowMCIsImlkIjoiZjlhMjE2OWQtMWYxYS00YThiLTgzZWEtNzkxMzY5YjY3ZmYxIiwibmJmIjoiMjAyMy0xMC0wNVQwMTowMjowOSswMjowMCJ9Ah0bVbx9S1LR-pf8hLWVRQPUfK9zrHZvA7ApJ5aZXwhA7H1j-kHhccBjOAGYXZQT-ts7Jq3SJlzo5vtUjGBtDg"
+      },
+      "properties": {
+        "accessToken": {
+          "type": "string",
+          "example": "v4.public.eyJlbWFpbCI6ImEyQGIuZGUiLCJleHAiOiIyMDIzLTEwLTA1VDAxOjE3OjA5KzAyOjAwIiwiaWF0IjoiMjAyMy0xMC0wNVQwMTowMjowOSswMjowMCIsImlkIjoiZjlhMjE2OWQtMWYxYS00YThiLTgzZWEtNzkxMzY5YjY3ZmYxIiwibmJmIjoiMjAyMy0xMC0wNVQwMTowMjowOSswMjowMCJ9Ah0bVbx9S1LR-pf8hLWVRQPUfK9zrHZvA7ApJ5aZXwhA7H1j-kHhccBjOAGYXZQT-ts7Jq3SJlzo5vtUjGBtDg",
+          "title": "Access Token"
+        },
+        "accessTokenExpiresAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "title": "Refresh Token Response"
+    },
+    "pbReturnsLog": {
+      "type": "object",
+      "example": {
+        "id": "1",
+        "email": "john.doe@example.com",
+        "firstname": "John",
+        "lastname": "Doe",
+        "phone": "",
+        "street": "Death Star 2",
+        "zip": "0815",
+        "city": "New York",
+        "country": "USA",
+        "birthday": "1990-10-05T00:00:00Z",
+        "privacy_accepted": false,
+        "privacy_accepted_date": "0001-01-01T00:00:00Z",
+        "creator": "john.doe@example.com",
+        "created": "2023-10-05T02:30:53Z",
+        "changer": "john.doe@example.com",
+        "changed": "2023-10-05T02:30:53Z"
+      },
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "returnId": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "mailId": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "status": {
+          "type": "string"
+        },
+        "creator": {
+          "type": "string"
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2023-10-05T00:00:00Z"
+        },
+        "changer": {
+          "type": "string"
+        },
+        "changed": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2023-10-05T00:00:00Z"
+        }
+      },
+      "title": "ReturnsLog"
+    },
+    "pbSession": {
+      "type": "object",
+      "example": {
+        "id": "1",
+        "account_id": "1",
+        "refresh_token": "v4.public.eyJlbWFpbCI6ImEyQGIuZGUiLCJleHAiOiIyMDIzLTEwLTA2VDAxOjAyOjA5KzAyOjAwIiwiaWF0IjoiMjAyMy0xMC0wNVQwMTowMjowOSswMjowMCIsImlkIjoiNWUxZDY3ZGEtN2M5Yi00MzY1LWE0ZDUtM2NjMGEwNTEyNDFlIiwibmJmIjoiMjAyMy0xMC0wNVQwMTowMjowOSswMjowMCJ9BoX36w0po1vvHSjsBP_KWeFxV1xRbQayqbJuIoK2jKqy1Bt2RoHyJbLoCEO15CRT5DnQ6P0AHlBzjsXt61aDDw",
+        "expires_at": "2023-10-05T02:30:53Z",
+        "created_at": "2023-10-05T01:20:11Z",
+        "client_ip": "10.56.0.12",
+        "user_agent": "Mozilla Firefox",
+        "is_blocked": false
+      },
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "accountId": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "userAgent": {
+          "type": "string"
+        },
+        "clientIp": {
+          "type": "string"
+        },
+        "isBlocked": {
+          "type": "boolean"
+        },
+        "expiresAt": {
+          "type": "string",
+          "format": "date-time",
+          "example": "1990-10-05T00:00:00Z"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "example": "1990-10-05T00:00:00Z"
+        },
+        "refreshToken": {
+          "type": "string"
+        }
+      },
+      "title": "Session"
+    },
+    "pbUpdateAccountPrivacyRequest": {
+      "type": "object",
+      "example": {
+        "id": "1",
+        "privacy_accepted": true
+      },
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "example": 1
+        },
+        "privacyAccepted": {
+          "type": "boolean",
+          "example": false
+        }
+      },
+      "description": "Update the Privacy Consent of an Account",
+      "title": "Update Account Privacy Consent",
+      "required": [
+        "id",
+        "privacyAccepted"
+      ]
+    },
+    "pbUpdateAccountPrivacyResponse": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "$ref": "#/definitions/pbAccount",
+          "title": "Updated Account"
+        }
+      },
+      "title": "Update Account Privacy Response"
+    },
+    "pbUpdateAccountRequest": {
+      "type": "object",
+      "example": {
+        "id": "1",
+        "street": "Death Star 2"
+      },
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "firstname": {
+          "type": "string"
+        },
+        "lastname": {
+          "type": "string"
+        },
+        "street": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "zip": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "birthday": {
+          "type": "string",
+          "format": "date-time",
+          "example": "1990-10-05T00:00:00Z"
+        }
+      },
+      "description": "Update an Account",
+      "title": "Update Account",
+      "required": [
+        "id"
+      ]
+    },
+    "pbUpdateAccountResponse": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "$ref": "#/definitions/pbAccount"
+        }
+      },
+      "description": "Returns the updated Account",
+      "title": "Updated Account"
+    },
+    "pbUpdatePaymentRequest": {
+      "type": "object",
+      "example": {
+        "id": "1",
+        "payment_category": "TBD: paypal",
+        "paypal_account": "john.doe@example.com",
+        "paypal_id": "this-is-a-paypal-id",
+        "payment_system": "TBD: paypal system",
+        "type": "TBD: some type"
+      },
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "paymentCategory": {
+          "type": "string"
+        },
+        "bankname": {
+          "type": "string"
+        },
+        "IBAN": {
+          "type": "string"
+        },
+        "BIC": {
+          "type": "string"
+        },
+        "paypalAccount": {
+          "type": "string"
+        },
+        "paypalId": {
+          "type": "string"
+        },
+        "paymentSystem": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "description": "Update an Payment",
+      "title": "Update Payment",
+      "required": [
+        "id"
+      ]
+    },
+    "pbUpdatePaymentResponse": {
+      "type": "object",
+      "properties": {
+        "payment": {
+          "$ref": "#/definitions/pbPayment"
+        }
+      },
+      "description": "Returns the updated Payment",
+      "title": "Updated Payment"
+    },
+    "pbUpdatePersonRequest": {
+      "type": "object",
+      "example": {
+        "id": "1",
+        "firstname": "John",
+        "lastname": "Doe",
+        "phone": "",
+        "street": "Death Star 3",
+        "zip": "0816",
+        "city": "Montana",
+        "country": "Canada",
+        "birthday": "1992-10-05T00:00:00Z"
+      },
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "firstname": {
+          "type": "string"
+        },
+        "lastname": {
+          "type": "string"
+        },
+        "street": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "zip": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "birthday": {
+          "type": "string",
+          "format": "date-time",
+          "example": "1990-10-05T00:00:00Z"
+        }
+      },
+      "description": "Update an Person",
+      "title": "Update Person",
+      "required": [
+        "id"
+      ]
+    },
+    "pbUpdatePersonResponse": {
+      "type": "object",
+      "properties": {
+        "person": {
+          "$ref": "#/definitions/pbPerson"
+        }
+      },
+      "description": "Returns the updated Person",
+      "title": "Updated Person"
+    },
+    "pbUploadDocumentRequest": {
+      "type": "object",
+      "example": {
+        "person_id": "1"
+      },
+      "properties": {
+        "file": {
+          "type": "string",
+          "format": "byte"
+        },
+        "personId": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "mailId": {
+          "type": "string",
+          "format": "uint64"
+        }
+      },
+      "description": "Upload a Document [only HTTP]",
+      "title": "UploadDocument [only HTTP]",
+      "required": [
+        "file"
+      ]
+    },
+    "pbUploadDocumentResponse": {
+      "type": "object",
+      "properties": {
+        "document": {
+          "$ref": "#/definitions/pbDocument"
+        }
+      },
+      "title": "UploadDocument Response"
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "BearerAuth": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  }
+}
